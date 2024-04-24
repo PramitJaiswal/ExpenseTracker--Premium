@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpenceTracker</title>
+
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="index.css">
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+ 
+ 
+</head>
+<body>
+    <div class="conatainer-fluid">
+        <div class="container main">
+            <div class="container" style="text-align: center;">
+                <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Expense Tracker</h1>
+            </div>            
+            <form action="/register-expense" method="post" onsubmit="addnewexpense(),freeHolds()">
+                <label for="select"> Select: Income Or Expence</label>
+                <select name="money" id="select" class="form-control">
+                    <option value="1">Income</option>
+                    <option value="0">Expence</option>
+                </select>
+                 <label for="amount"> Amount :</label>
+                 <input type="number" name="amount" class="form-control" id="amount" required>
+
+                 <label for="discribe"> Discription :</label>
+                 <input type="text" name="description" class="form-control" id="discribe" required>
+
+                 <label for="category">Category :</label>
+                   <select name="category" class="form-control" id="category" >
+                    <option value="Grocery">Grocery</option>
+                    <option value="Electronic">Electronic</option>
+                    <option value="Movie">Movie</option>
+                    <option value="Fee">Fee</option>
+                    <option value="Party">Party</option>
+                   </select>
+                   <label for="date">Date :</label>
+                   <input type="date" name="date" class="form-control" id="date">
+                   <label for="time">Time :</label>
+                   <input type="time" name="time" class="form-control" id="time">
+                    <br>
+                   <input type="submit" class="btn btn-primary form-control" value="Add Expence">
+            </form>
+           
+           
+               
+        </div>
+        <br>
+        <div class="container " id="premium-container">
+            <button id="buybutton" class="btn btn-dark" onclick="buyPremium()">Buy Premium</button>
+        </div>
+        
+        <br>
+        <div class="b" style="text-align: center;">
+            <h1 style="font-size: 2rem; color: #333;">Balance:</h1>
+            <h1 id="balance" style="font-size: 1.5rem; color: #007bff; font-weight: bold;"></h1>
+        </div>        
+        
+        <div class="container exp-div overflow-auto" >
+              <div class="head">
+                <h3>All Expenses</h3>
+                
+              </div>
+              
+            <table id="example" class="table table-striped ">
+                <thead>
+                     <tr>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Date</th>
+                      
+                        
+                     </tr>
+                </thead>
+                 
+                 <tbody id="items">
+                    
+                 </tbody>
+                
+ 
+
+            </table>
+              
+        </div>
+         <div class="container exp-div overflow-auto">
+            <h3>All Incomes</h3>
+            <table class="table table-striped ">
+                <thead>
+                     <tr>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Date</th>
+                      
+                        
+                     </tr>
+                </thead>
+                 
+                 <tbody id="income-items">
+                    
+                 </tbody>
+                
+ 
+
+            </table>
+         </div>
+
+         <div class="container">
+            <h3 id="lboardh"> Leaderboard</h3>
+                <table class="table table-striped">
+                    <tbody id="leaderboard">
+
+                    </tbody>
+
+                </table>
+              
+
+         </div>
+
+         <div class="container " id="premium-container2">
+        </div>
+    </div>
+   
+
+    <script src="index.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    
+</body>
+</html>
