@@ -16,7 +16,7 @@ const ForgetPassReq = require('./models/forgetPassReq');
 const premiumRouter = require('./routes/buyprimium');
 require('dotenv').config();
 
-const port =  4000;
+const port =  8080;
 const app = express();
 
 

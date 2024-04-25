@@ -83,7 +83,7 @@ function premiumData (response){
                
        const token = localStorage.getItem('token');
 
-       await axios.get('http://localhost:4000/download',{headers:{"Authorization" : token}})
+       await axios.get('http://localhost:8080/download',{headers:{"Authorization" : token}})
        .then((result) => {
           window.location.href = result.data.url;
        })
@@ -98,7 +98,7 @@ function premiumData (response){
                
       const token = localStorage.getItem('token');
 
-      await axios.get('http://localhost:4000/downloadIncomes',{headers:{"Authorization" : token}})
+      await axios.get('http://localhost:8080/downloadIncomes',{headers:{"Authorization" : token}})
       .then((result) => {
          window.location.href = result.data.url;
       })
@@ -113,7 +113,7 @@ function premiumData (response){
     lbutton.addEventListener('click', async function () {
     const token = localStorage.getItem('token');
     
-    await axios.get('http://localhost:4000/premium-user-leaderboard',{headers : {"Authorization" : token}})
+    await axios.get('http://localhost:8080/premium-user-leaderboard',{headers : {"Authorization" : token}})
     .then((result) => {
         
 
@@ -163,7 +163,7 @@ async function findPremium(){
       
        const token = localStorage.getItem('token');
 
-       await axios.get('http://localhost:4000/is-premium-user', {headers : {"Authorization" : token}})
+       await axios.get('http://localhost:8080/is-premium-user', {headers : {"Authorization" : token}})
        .then(( response) => {
 
 
@@ -206,7 +206,7 @@ async function addnewexpense (){
    const token = localStorage.getItem('token');
   
   
-   await axios.post('http://localhost:4000/register-expense',expense,{ headers: {"Authorization" : token }})
+   await axios.post('http://localhost:8080/register-expense',expense,{ headers: {"Authorization" : token }})
      .then( resonse => {
         console.log(resonse.data);
         
@@ -225,7 +225,7 @@ async function addnewexpense (){
             const token = localStorage.getItem('token');
 
         //  fetch expenses data---
-          await axios.get('http://localhost:4000/expenses', { headers : {"Authorization" : token}})
+          await axios.get('http://localhost:8080/expenses', { headers : {"Authorization" : token}})
           .then(results => {
             console.log(results);
             const expenses = results.data.allExpense;
@@ -243,7 +243,7 @@ async function addnewexpense (){
 
           //fetch incomes data ---
 
-          await axios.get('http://localhost:4000/incomes', { headers : {"Authorization" : token}})
+          await axios.get('http://localhost:8080/incomes', { headers : {"Authorization" : token}})
           .then(results => {
             console.log(results);
             const incomes = results.data.allIncomes;
@@ -257,7 +257,7 @@ async function addnewexpense (){
           })
           .catch(err => console.log('FetchData income function error', err));
 
-          await axios.get('http://localhost:4000/balance', { headers : {"Authorization" : token}})
+          await axios.get('http://localhost:8080/balance', { headers : {"Authorization" : token}})
           .then(results => {
             console.log(results);
             const balance = results.data.balance;
@@ -344,7 +344,7 @@ function AddExpence(expense, select){
          async function decreas(){
       
               
-          await axios.post(`http://localhost:4000/decreas-exspense`,{amount,select},{headers:{"Authorization" : token}})
+          await axios.post(`http://localhost:8080/decreas-exspense`,{amount,select},{headers:{"Authorization" : token}})
             .then(()=> {
                     console.log("Decreases..")
             }).catch((err) => {
@@ -368,7 +368,7 @@ function AddExpence(expense, select){
               console.log(router)
             
             
-            await axios.delete(`http://localhost:4000/${router}/${id}`)
+            await axios.delete(`http://localhost:8080/${router}/${id}`)
               .then( result => {
                console.log('deleted..');
                 tr.removeChild(li);
@@ -410,7 +410,7 @@ function AddExpence(expense, select){
              }
 
             try {
-                await axios.delete(`http://localhost:4000/${router}/${id}`)
+                await axios.delete(`http://localhost:8080/${router}/${id}`)
                 tr.removeChild(li);
                 console.log('editing data..')
             
@@ -442,13 +442,13 @@ function AddExpence(expense, select){
      
    const token = localStorage.getItem('token');
 
-   const response = await axios.get('http://localhost:4000/buy-premium', { headers: {"Authorization" : token }})
+   const response = await axios.get('http://localhost:8080/buy-premium', { headers: {"Authorization" : token }})
    
     var options ={
          "key": response.data.key_id,
          "order_id": response.data.order.id,
          "handler": async function (resonse){
-             await axios.post('http://localhost:4000/premium-success',{
+             await axios.post('http://localhost:8080/premium-success',{
                  order_id : options.order_id,
                  payment_id: resonse.razorpay_payment_id,
              },
