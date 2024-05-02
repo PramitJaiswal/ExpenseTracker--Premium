@@ -14,12 +14,11 @@ const User = require('./models/signUpUser');
 const orders = require('./models/orders');
 const ForgetPassReq = require('./models/forgetPassReq');
 const premiumRouter = require('./routes/buyprimium');
+
 require('dotenv').config();
 
 const port =  8080;
 const app = express();
-
-
 
 app.use(express.json());
 
@@ -27,12 +26,12 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,'public','css')));
 app.use(express.static(path.join(__dirname,'public','js')));
 app.use(express.static(path.join(__dirname,'public','views')));
+
 // routers
 app.use(loginRoutes);
 app.use(signUpRoutes);
 app.use(expenseRoutes);
 app.use(premiumRouter);
-
 
 // Associations 
 User.hasMany(expenses);
@@ -45,9 +44,6 @@ orders.belongsTo(User);
 User.hasMany(ForgetPassReq);
 ForgetPassReq.belongsTo(User);
 
-
-
-
 sequelize.sync()
 .then( () => {
     app.listen( port , () => {
@@ -58,6 +54,3 @@ sequelize.sync()
 .catch( error => {
     console.log(error);
 });
-
-
-
